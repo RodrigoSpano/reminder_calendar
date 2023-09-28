@@ -7,6 +7,7 @@ export default {
     extend: {
       fontFamily: {
         openSans: ['Open Sans', 'sans-serif'],
+        lato: ['Lato', 'sans-serif']
       },
     },
   },
