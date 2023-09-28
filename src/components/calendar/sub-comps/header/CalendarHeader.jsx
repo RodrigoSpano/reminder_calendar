@@ -8,7 +8,7 @@ const CalendarHeader = ({ handleNext, handlePrev}) => {
     <div className='flex flex-col text-white font-openSans w-full gap-10 mt-14'>
       <div className='flex flex-col justify-center items-center leading-[1]'>
         <h2 className='text-[80px] font-bold text-center'>{state.year}</h2>
-        <h3 className='text-[45px] font-semibold'>{state.months[state.actualMonth].month}</h3>
+        <h3 className='text-[45px] font-semibold capitalize'>{state.months[state.actualMonth].month}</h3>
       </div>
       <ChangeMonthBtns handleNext={handleNext} handlePrev={handlePrev} />
     </div>
