@@ -1,9 +1,30 @@
+import { useEffect } from "react"
+import { useState } from "react"
+import HeaderForm from "./reminderForm/HeaderForm"
+import { useSelector } from "react-redux"
+import HomeHeader from "./reminderForm/homeHeader"
 
 const HeaderReminder = () => {
+  const state = useSelector(state => state.section)
+  const [today, setToday] = useState({})
+  useEffect(() => {
+    const todayInfo = new Intl.DateTimeFormat('en-US', {weekday: 'long', month: 'long', year:'numeric'}).format(new Date())
+    const todayObj = {
+      year: todayInfo.split(' ')[1],
+      weekday: todayInfo.split(' ')[2],
+      month: todayInfo.split(' ')[0],
+      date: new Date().getDate()
+    }
+    setToday(todayObj)
+  }, [])
   return (
-    <div className="flex justify-between p-10">
-      <h2>Friday, August 26, 2022</h2>
-      <button className="bg-gradient-to-r from-[#FF465D] to-[#BC46BA] w-[180px] h-[49px] text-white shadow-md">Add reminder</button>
+    <div className="flex items-center p-10">
+      {
+        (state.actualSection === 'HOME' || state.actualSection === 'VIEW_REMINDERS') ? <HomeHeader today={today} /> : 
+        (state.actualSection === 'ADD_FORM') ? <HeaderForm title={'Add reminder'} today={today} /> : 
+        (state.actualSection === 'EDIT_FORM') ? <HeaderForm title={'Edit reminder'} today={today} />  
+        : null
+      }
     </div>
   )
 }

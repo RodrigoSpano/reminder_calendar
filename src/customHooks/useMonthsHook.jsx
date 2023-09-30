@@ -51,7 +51,6 @@ const useMonthsHook = () => {
   function handleMonthDisabled(actualM) {
     if(actualM < new Date().getMonth()) {
       setIsDisabled(true)
-      console.log(actualM, new Date().getMonth())
     } else {setIsDisabled(false)}
   }
 
