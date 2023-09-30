@@ -6,6 +6,7 @@ const useMonthsHook = () => {
 
   const newDate = new Date().getMonth()
   const [actual, setActual] = useState(newDate)
+  const [isDisabled, setIsDisabled] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -36,16 +37,25 @@ const useMonthsHook = () => {
       setActual(actual + 1)
       dispatch(updateActualMonth(actual + 1))
     }
+    handleMonthDisabled(actual+1)
   }
 
   const prevMonth = () => {
-    if (actual > new Date().getMonth()) {
+    if (actual > 0) {
       setActual(actual - 1)
       dispatch(updateActualMonth(actual - 1))
     }
+    handleMonthDisabled(actual-1)
   }
 
-  return { getMonthsOfYear, nextMonth, prevMonth, actual }
+  function handleMonthDisabled(actualM) {
+    if(actualM < new Date().getMonth()) {
+      setIsDisabled(true)
+      console.log(actualM, new Date().getMonth())
+    } else {setIsDisabled(false)}
+  }
+
+  return { getMonthsOfYear, nextMonth, prevMonth, isDisabled, actual }
 }
 
 export default useMonthsHook

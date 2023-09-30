@@ -11,11 +11,15 @@ export const remindersSlice = createSlice({
     getReminder: (state, action) => { // get reminders from specific date
       const findReminder = state.reminders.filter(r => r.date === action.payload.date)
       return findReminder
+    },
+    addReminder: (state, action) => { //add reminder
+      state.reminders = action.payload
+
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { getReminder } = remindersSlice.actions
+export const { getReminder, addReminder } = remindersSlice.actions
 
 export default remindersSlice.reducer
