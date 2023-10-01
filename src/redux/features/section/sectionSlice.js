@@ -7,7 +7,7 @@ const section_types = {
 }
 
 const initialState = {
-  actualSection: section_types.ADD_FORM,
+  actualSection: section_types.VIEW_REMINDERS,
 }
 
 export const sectionSlice = createSlice({
