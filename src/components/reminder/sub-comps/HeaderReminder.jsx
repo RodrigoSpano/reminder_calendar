@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useState } from "react"
 import HeaderForm from "./reminderForm/HeaderForm"
 import { useSelector } from "react-redux"
-import HomeHeader from "./reminderForm/homeHeader"
+import HomeHeader from "./reminderForm/HomeHeader"
 
 const HeaderReminder = () => {
   const state = useSelector(state => state.section)
