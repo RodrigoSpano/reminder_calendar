@@ -20,7 +20,7 @@ const HeaderReminder = () => {
   return (
     <div className="flex items-center p-10">
       {
-        (state.actualSection === 'HOME' || state.actualSection === 'VIEW_REMINDERS') ? <HomeHeader today={today} /> : 
+        ( state.actualSection === 'VIEW_REMINDERS') ? <HomeHeader today={today} /> : 
         (state.actualSection === 'ADD_FORM') ? <HeaderForm title={'Add reminder'} today={today} /> : 
         (state.actualSection === 'EDIT_FORM') ? <HeaderForm title={'Edit reminder'} today={today} />  
         : null

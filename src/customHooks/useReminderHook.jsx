@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { addReminder } from "../redux/features/reminders/remindersSlice"
+import { changeSection } from "../redux/features/section/sectionSlice"
 
 const initialState = {
   title: '',
@@ -64,6 +65,7 @@ const useReminderHook = () => {
       replacedDate = replacedDate.join(', ')
       if(!reminder.color.length) setReminder({...reminder, color: '#BCAAA4'})
       dispatch(addReminder({...reminder, date: replacedDate}))
+      dispatch(changeSection('VIEW_REMINDERS'))
     } else {
       setErrors(errors)
     }

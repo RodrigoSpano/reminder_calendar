@@ -13,7 +13,7 @@ export const remindersSlice = createSlice({
       return findReminder
     },
     addReminder: (state, action) => { //add reminder
-      state.reminders = action.payload
+      state.reminders.push(action.payload)
 
     }
   },

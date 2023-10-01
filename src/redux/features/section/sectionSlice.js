@@ -1,14 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const section_types = {
-  HOME: 'HOME',
   ADD_FORM: 'ADD_FORM',
   EDIT_FORM: 'EDIT_FORM',
   VIEW_REMINDERS: 'VIEW_REMINDERS'
 }
 
 const initialState = {
-  actualSection: section_types.HOME,
+  actualSection: section_types.ADD_FORM,
 }
 
 export const sectionSlice = createSlice({
@@ -16,24 +15,18 @@ export const sectionSlice = createSlice({
   initialState,
   reducers: {
     changeSection: (state, action) => {
-      switch (action) {
-        case 'HOME':
-          state.actualSection = section_types.HOME
-          break;
-        case 'ADD_FORM':
-          state.actualSection = section_types.ADD_FORM
-          break;
-        case 'EDIT_FORM':
-          state.actualSection = section_types.EDIT_FORM
-          break;
-        case 'VIEW_REMINDERS':
-          state.actualSection = section_types.VIEW_REMINDERS
-          break
-        default:
-          state.actualSection = section_types.HOME
+      if (action.payload === 'ADD_FORM') {
+        state.actualSection = section_types.ADD_FORM
       }
+      if (action.payload === 'EDIT_FORM') {
+        state.actualSection = section_types.EDIT_FORM
+      }
+      if (action.payload === 'VIEW_REMINDERS') {
 
+        state.actualSection = section_types.VIEW_REMINDERS
+      }
     }
+
   },
 })
 
