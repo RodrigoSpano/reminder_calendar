@@ -8,7 +8,11 @@ const DaysBoxes = ({isDisabledMonth, daysArr, startsOn}) => {
   const dispatch = useDispatch()
 
   const handleChange = async (value) => {
-    dispatch(setSelectedDate(`${state.actualMonth}, ${value+1}, ${state.year}`))
+    let dayVal = value+1
+    if(dayVal.toString().length === 1) {
+      dayVal = `0${dayVal}`
+    }
+    dispatch(setSelectedDate(`${state.actualMonth}, ${dayVal}, ${state.year}`))
   }
 
   return (

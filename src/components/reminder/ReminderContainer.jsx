@@ -7,7 +7,7 @@ const ReminderContainer = () => {
   const {actualSection} = useSelector(state => state.section)
 
   return (
-    <div className=' h-[686px] rounded-l-[40px] bg-white w-full shadow-lg'>
+    <div className=' h-[686px] rounded-l-[40px] bg-white w-full shadow-lg '>
       <HeaderReminder />
       {
         actualSection === 'VIEW_REMINDERS' ? 
