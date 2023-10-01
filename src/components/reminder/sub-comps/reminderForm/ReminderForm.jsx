@@ -1,13 +1,14 @@
+import { useSelector } from "react-redux"
 import useReminderHook from "../../../../customHooks/useReminderHook"
 import FormButtons from "./FormButtons"
 
 const ReminderForm = () => {
-
+  const {actualSection} = useSelector(state => state.section)
   const colors = ['#C8E6C9', '#F5DD29', '#FFCC80', '#EF9A9A', '#CD8DE5', '#5BA4CF', '#29CCE5', '#6DECA9', '#FF8ED4', '#BCAAA4']
-  const {handleReminderChange,handleSubmitReminder, handleChangeReminderColor, reminder, errors} = useReminderHook()
+  const {handleReminderChange,handleSubmitReminder, handleChangeReminderColor, handleSubmitEditReminder, reminder, errors} = useReminderHook()
 
   return (
-    <form className="flex flex-col gap-5 px-10" onSubmit={handleSubmitReminder}>
+    <form className="flex flex-col gap-5 px-10" onSubmit={actualSection === 'EDIT_FORM' ? handleSubmitEditReminder : handleSubmitReminder}>
       {/* title */}
       <div className="flex flex-col ">
         <div className="flex gap-2 items-center">

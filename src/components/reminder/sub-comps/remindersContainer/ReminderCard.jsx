@@ -2,9 +2,16 @@
 
 import { useDispatch } from "react-redux"
 import { changeSection } from "../../../../redux/features/section/sectionSlice"
+import { getReminderDetail } from "../../../../redux/features/reminders/remindersSlice"
 
 const ReminderCard = ({data}) => {
   const dispatch = useDispatch()
+
+  const handleClickEdit = async () => {
+    await dispatch(getReminderDetail(data.id))
+    await dispatch(changeSection('EDIT_FORM'))
+  }
+
   return (
     <div className="relative flex gap-4 items-center h-[134px] rounded-2xl shadow-lg shadow-[#D1DCF0] p-4 w-[567px] ">
       {/* color */}
@@ -25,7 +32,7 @@ const ReminderCard = ({data}) => {
         </div>
         </div>
       </div>
-      <div onClick={() => dispatch(changeSection('EDIT_FORM'))} className="cursor-pointer absolute bottom-0 right-0 translate-y-4  rounded-full w-[36px] h-[36px] bg-gradient-to-r from-[#3BC6FB] to-[#0FC] grid place-content-center">  
+      <div onClick={handleClickEdit} className="cursor-pointer absolute bottom-0 right-0 translate-y-4  rounded-full w-[36px] h-[36px] bg-gradient-to-r from-[#3BC6FB] to-[#0FC] grid place-content-center">  
       <img src="/assets/pen.svg" className="w-[18px] h-[18px] text-white" />
       </div>
     </div>
