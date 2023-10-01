@@ -19,13 +19,13 @@ const useReminderHook = () => {
 
   const [reminder, setReminder] = useState(initialState)
   const [errors, setErrors] = useState(initialState)
-  const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/;
-  const hourRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
-
-  
+    
   const dispatch = useDispatch()
-
+  
   const validate = (reminder) => {
+    const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/;
+    const hourRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
+    const regexDate2 = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2[0-9]|3[0-1])\/(?!0000)\d{4}$/;
     let validationErrors = {};
 
     if (reminder.title.length < 3) validationErrors.title = "Title must be longer.";
@@ -34,6 +34,7 @@ const useReminderHook = () => {
     if (reminder.date.split('/')[2] < new Date().getDay()) validationErrors.date = 'Make reminders in future dates'
     if (reminder.time.split(':')[0] >= '24' ) validationErrors.time = 'time cannot be higher than 23:59'
     if (!dateRegex.test(reminder.date)) validationErrors.date = 'please use format MM/DD/YYYY'
+    if (!regexDate2.test(reminder.date)) validationErrors.date = 'please provide valid information'
     if (!hourRegex.test(reminder.time)) validationErrors.time = 'please use format HH:MM'
     return validationErrors;
   };
